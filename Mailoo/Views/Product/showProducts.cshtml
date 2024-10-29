@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Mailo.Models.Product>
+<div class="container">
+    <h2>Our Products</h2>
+    <div class="row">
+        @foreach (var Product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card" style="margin-bottom: 20px;">
+                    <img src="~/images/part_of_logo2.jpg" alt="@Product.Name" class="card-img-top" style="max-height: 150px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@Product.Name</h5>
+                        <p class="card-text">@Product.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Product")'">
+            Add New Product
+        </button>
+    </div>
+</div>

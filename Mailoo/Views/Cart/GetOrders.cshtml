@@ -1,0 +1,65 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "Show Orders";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Your Orders</h2>
+        </div>
+        
+    </div>
+
+    <hr />
+    <br />
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Order Date</th>
+                <th>Order Status</th>
+                <th>Total Price</th>
+                <th>Cancel</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Order o in Model)
+            {
+                <tr>
+                    <td>@o.OrderDate</td>
+                  
+                    <td>@o.OrderStatus</td>
+                    <td>@o.TotalPrice</td>
+                    <td>
+                        <form method="post" asp-action="CancelOrder" asp-controller="Cart">
+                            <input name="ID" value="@o.ID" hidden />
+                            <input name="OrderAddress" value="@o.OrderAddress" hidden>
+                            <input name="OrderDate" value="@o.OrderDate" hidden>
+                            <input name="OrderPrice" value="@o.OrderPrice" hidden>
+                            <input name="DeliveryFee" value="@o.DeliveryFee" hidden>
+                            <input name="OrderStatus" value="@o.OrderStatus" hidden>
+                            <input name="UserID" value="@o.UserID" hidden>
+                            <input name="EmpID" value="@o.EmpID" hidden>
+                            <input name="TotalPrice" value="@o.TotalPrice" hidden>
+
+                                <button type="submit" class="btn btn-secondary">Cancel</button>
+
+
+                        </form>
+                    </td>
+                        <td>
+                            <a asp-action="PaymentWithPayPal" asp-controller="Payment" class="btn btn-secondary">
+                                Pay with PayPal
+                            </a>
+                        </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+
+

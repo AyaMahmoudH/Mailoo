@@ -1,0 +1,97 @@
+﻿@model Mailo.Models.Product
+@{
+
+    ViewData["Title"] = "New";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .container1 {
+            background-color: rgba(143, 217, 251, 0.2); /* White with 80% opacity */
+            border-radius: 10px;
+            padding: 2%;
+            width: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            margin: auto;
+           
+        }
+        .form-control {
+            width: 304px;
+        }
+    </style>
+
+</head>
+<body>
+    <h2 class="text-primary">Add New Item</h2>
+    <hr />
+    <div class="container1 justify-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <form method="post" asp-action="New" enctype="multipart/form-data">
+                        <div asp-validation-summary="All"></div>
+                        <div  class="form-group mb-3">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Price"></label>
+                            <input  type="number" asp-for="Price" class="form-control"/>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Description"></label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Quantity"></label>
+                            <input asp-for="Quantity" class="form-control" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Category" class="control-label"></label>
+                            <select asp-for="Category" class="form-control">
+                                <option value="0">Pants</option>
+
+                                <option value="1">Hoodie</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                        <br/>
+                        <div>
+                            <input type="file" asp-for="clientFile" onchange="loadFile(event)" />
+                            <img id="myImg" height="150" />
+                        </div>
+                        <hr />
+                    <span><button type="submit" class="btn btn-success">Save</button></span>
+                    <span><a asp-action="Index" asp-controller="Product" class="btn btn-secondary">
+                            back to items
+                        </a>
+                    </span>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+</body>
+
+</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        var loadFile = function(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var myImg = document.getElementById('myImg');
+                myImg.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}
+
+
+

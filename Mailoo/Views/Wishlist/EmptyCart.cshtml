@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist is Empty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .container {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 25px;
+            padding: 10px 20px;
+        }
+
+        .card h3 {
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <div class="card shadow-lg p-4">
+                    <!-- Empty Cart Icon -->
+                    <div class="mb-3">
+                        <i class="fas fa-shopping-cart fa-3x text-muted"></i>
+                    </div>
+
+                    <!-- Empty Cart Message -->
+                    <h3>Wishlist is Empty</h3>
+                    <p class="text-muted">It looks like you haven't added anything to your cart yet.</p>
+
+                    <!-- Call-to-Action Button -->
+                    <a asp-controller="User" asp-action="Index_A" class="btn btn-primary mt-3">
+                        Start Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+

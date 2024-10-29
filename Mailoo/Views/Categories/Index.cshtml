@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "New Arrivals";
+}
+
+<div class="category-buttons">
+    <button class="category-button active">New Arrivals</button>
+    <button class="category-button">Sale</button>
+</div>
+
+<div class="slider">
+    <div class="slider-item">
+        <img src="~/lib/" alt="Black Ruffle Chiffon Dress" />
+		<h3>Black Ruffle Chiffon Dress</h3>
+        <p>LE 1,980.00</p>
+    </div>
+    <div class="slider-item">
+        <img src="./images/part_of_logo2.jpg" alt="Wrap Linen Blouse - Black">
+        <h3>Wrap Linen Blouse - Black</h3>
+        <p>LE 400.00</p>
+    </div>
+    <div class="slider-item">
+        <img src="./images/part_of_logo3.jpg" alt="Wrap Linen Blouse - Peach">
+        <h3>Wrap Linen Blouse - Peach</h3>
+        <p>LE 400.00</p>
+    </div>
+    <div class="slider-item">
+        <img src="./images/part_of_logo4.jpg" alt="Crushed Wrap Blouse - White">
+        <h3>Crushed Wrap Blouse - White</h3>
+        <p>LE 400.00</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const categoryButtons = document.querySelectorAll('.category-button');
+        const slider = document.querySelector('.slider');
+        const sliderItems = document.querySelectorAll('.slider-item');
+
+        categoryButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to the clicked button
+                button.classList.add('active');
+
+                // Hide all slider items
+                sliderItems.forEach(item => item.style.display = 'none');
+                // Show the items for the selected category
+                if (index === 0) {
+                    sliderItems.forEach(item => item.style.display = 'block');
+                } else {
+                    sliderItems.forEach((item, i) => {
+                        if (i > 0) {
+                            item.style.display = 'block';
+                        }
+                    });
+                }
+
+                // Scroll to the beginning of the slider
+                slider.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+}
+
+<style>
+    /* CSS styles */
+    .slider {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+
+    .slider-item {
+        flex: 0 0 auto;
+        width: 100%;
+        scroll-snap-align: start;
+        padding: 1rem;
+    }
+
+        .slider-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .category-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .category-button {
+        background-color: #f1f1f1;
+        border: none;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+        .category-button.active {
+            background-color: #ccc;
+        }
+</style>

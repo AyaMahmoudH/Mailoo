@@ -1,0 +1,63 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "View Orders";
+}
+
+<h1>View Orders</h1>
+<a asp-action="ViewRequiredOrders" asp-controller="Employee">View My Required Tasks</a>
+<table class="table table-hovered table-info table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            @* <th>Order Address</th> *@
+            <th>Order Date</th>
+            <th>Order Price</th>
+            <th>Delivery Fee</th>
+            <th>Total Price</th>
+            @* <th>Phone Number</th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (Order o in Model)
+            {
+                <tr>
+                    <td>@o.ID</td>
+                    @* <td>@o.user.Address</td> *@
+                    <td>@o.OrderDate </td>
+                    <td>@o.OrderPrice</td>
+                    <td>@o.DeliveryFee</td>
+                    <td>@o.TotalPrice</td>
+                    @* <td>@o.user.PhoneNumber</td> *@
+                    <td>
+
+                        <form method="post" asp-action="AcceptOrder" asp-controller="Employee">
+                            <input name="ID" value="@o.ID" hidden />
+                            <input name="OrderAddress" value="@o.user.Address" hidden>
+                            <input name="OrderDate" value="@o.OrderDate" hidden>
+                            <input name="OrderPrice" value="@o.OrderPrice" hidden>
+                            <input name="DeliveryFee" value="@o.DeliveryFee" hidden>
+                            <input name="OrderStatus" value="@o.OrderStatus" hidden>
+                            <input name="UserID" value="@o.UserID" hidden>
+                            <input name="EmpID" value="@o.EmpID" hidden>
+                            <input name="TotalPrice" value="@o.TotalPrice" hidden>
+
+                            <button type="submit">Accept</button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <p>No orders available.</p>
+        }
+
+    </tbody>
+</table>
+

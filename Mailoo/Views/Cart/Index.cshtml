@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="container">
+    <h2>Your Shopping Cart</h2>
+    <br />
+    @using (Html.BeginForm("ClearCart", "Cart", FormMethod.Post))
+
+    {
+
+        <input type="submit" value="Clear Cart" class="btn btn-warning btn-sm" />
+
+    }
+    <hr />
+
+
+    <div class="row justify-content-center">
+        @foreach (Product product in Model)
+        {
+            <div class="col-md-4 col-sm-6 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="@product.imageSrc" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p>
+                            @product.TotalPrice @if (@product.Price != @product.TotalPrice)
+                            {
+                                            <span class="text-decoration-line-through">@product.Price</span>
+                            } 
+                        </p>
+                        
+
+                        @using (Html.BeginForm("RemoveProduct", "Cart", FormMethod.Post, new { @class = "d-inline-block me-2" }))
+                        {
+                            @Html.Hidden("productId", product.ID)
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash3-fill btn-danger"></i> Remove
+                            </button>
+                        }
+                        <form asp-action="AddtoWishlist" asp-controller="Wishlist" class="d-inline-block" method="post">
+                            <input type="hidden" name="ID" value="@product.ID" />
+                            <input type="hidden" name="Name" value="@product.Name" />
+                            <input type="hidden" name="Price" value="@product.Price" />
+                            <input type="hidden" name="Description" value="@product.Description" />
+                            <input type="hidden" name="imageSrc" value="@product.imageSrc" />
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="bi bi-heart"></i>
+                            </button>
+
+                        </form>
+                        
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+
+    @using (Html.BeginForm("NewOrder", "Cart", FormMethod.Post))
+
+
+
+    {
+        <input type="submit" value="Checkout" class="btn btn-success btn-sm" />
+
+    }
+</div>

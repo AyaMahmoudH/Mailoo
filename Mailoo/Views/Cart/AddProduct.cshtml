@@ -1,0 +1,47 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Add to cart";
+}
+
+<form method="post" asp-action="AddProduct">
+    <input asp-for="ID" hidden />
+    <input asp-for="AdditionDate" hidden />
+    <input asp-for="Quantity" hidden />
+    <input asp-for="clientFile" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Add product to cart</h2>
+            <hr />
+        </div>
+        <div>
+            <img id="myImg" height="200" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" disabled />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Discount"></label>
+            <input asp-for="Discount" class="form-control" disabled />
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" disabled />
+        </div>
+        <br />
+        <hr />
+        <button type="submit" class="btn btn-primary" style="width:150px">Add</button>
+        <a asp-action="Index_U" asp-controller="User" class="btn btn-secondary" style="width:150px">
+            back to items
+        </a>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

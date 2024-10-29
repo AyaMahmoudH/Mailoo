@@ -1,0 +1,59 @@
+﻿@model Mailo.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .container1 {
+                background-color: rgba(143, 217, 251, 0.2); /* White with 80% opacity */
+                border-radius: 10px;
+                width: 50%;
+            margin: auto;
+                padding:2%;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            }
+            .form-control {
+                width: 250px;
+            }
+        </style>
+
+    </head>
+    <body>
+    <h2 class="text-primary">Login</h2>
+        <hr />
+        <div class="container1 justify-center mt-5">
+           <div class="row justify-content-center">
+                <div class="col-md-4">
+                   <form asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group mb-3">
+                            <label asp-for="UsernameOrEmail" class="control-label"></label>
+                        <i class="fas fa-user-circle"></i><input asp-for="UsernameOrEmail" class="form-control" />
+                            <span asp-validation-for="UsernameOrEmail" class="text-danger"></span>
+                        </div>
+                    <div class="form-group mb-3">
+                            <label asp-for="Password" class="control-label"></label>
+                        <i class="fas fa-lock"></i>  <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    <div class="form-group mb-3">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+           </div>
+        </div>
+    <div>
+        <a asp-action="ForgotPassword">Forgot Password?</a>
+    </div>
+        <div>
+            Don't have an account? <a asp-action ="Registration">Go To Registration</a>
+        </div>
+    </body>
+</html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

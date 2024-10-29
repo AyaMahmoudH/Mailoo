@@ -1,0 +1,27 @@
+﻿@model List<Contact>
+
+<h4>ContactUs</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">Contact Information</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Email</td>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contact in Model)
+                    {
+                        <tr>
+                            <td>@contact.user.Email</td>
+                            <td>@contact.Message</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

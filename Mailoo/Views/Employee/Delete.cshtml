@@ -1,0 +1,77 @@
+﻿@model Mailo.Models.Employee
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HiringDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HiringDate)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="ID" />
+        <input asp-for="FName" hidden />
+        <input asp-for="LName" hidden />
+        <input asp-for="FullName" hidden />
+        <input asp-for="Address" hidden />
+
+        <input asp-for="Email" hidden />
+        <input asp-for="Username" hidden />
+
+        <input asp-for="Password" hidden />
+        <input asp-for="Gender" hidden />
+        <input asp-for="HiringDate" hidden />
+        <input asp-for="PhoneNumber" hidden />
+        <button type="submit" class="btn btn-danger">|Delete</button>
+        <a asp-action="Index">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+﻿@model Mailo.Models.Contact
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <h3>Send Us A Message</h3>
+            @if (TempData["SuccessContact"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessContact"]
+                </div>
+            }
+            <form asp-action="Index_A" method="post">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label for="message">How Can We Help?</label>
+                    <textarea asp-for="Message" class="form-control" rows="4" placeholder="How Can We Help?"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <h3>Contact Information</h3>
+            <ul class="list-unstyled">
+                <li>
+                    <i class="bi bi-telephone"></i>
+                    <p class="stext-107 cl7 size-201">
+                        Let's talk <a href="tel:+201011895030">(+20)1011895030</a>
+                    </p>
+                </li>
+                <li>
+                    <i class="bi bi-envelope"></i>
+                    <p class="stext-107 cl7 size-201">
+                        Sale Support: <a href="mailto:mailostoreee@gmail.com">mailostoreee@gmail.com</a>
+                    </p>
+                 </li>
+                 </ul>
+                 </div>
+    </div>
+</div>

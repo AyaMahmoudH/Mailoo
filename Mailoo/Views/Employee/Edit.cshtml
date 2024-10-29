@@ -1,0 +1,90 @@
+﻿@model Mailo.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .container1{
+          background-color: rgba(143, 217, 251, 0.2);
+         border-radius: 10px;
+                 padding: 2%;
+        width: 50%;
+         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+                 margin: auto;
+        }
+
+         .form-control{
+             width: 250px;
+         }
+    </style>
+
+</head>
+<body>
+
+
+    <h2 class="text-primary">Edit Employee</h2>
+    <hr />
+
+    <div class="container1 justify-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <input asp-for="FullName" hidden />
+            <input asp-for="HiringDate" hidden />
+            <input asp-for="Username" class="form-control" hidden />
+            <input asp-for="UserType" type="hidden" value="2" />
+            <input asp-for="Email" class="form-control" hidden />
+            <input asp-for="Password" class="form-control" hidden />
+            <div class="form-group">
+                <label asp-for="FName" class="control-label"></label>
+                <input asp-for="FName" class="form-control" />
+                <span asp-validation-for="FName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LName" class="control-label"></label>
+                <input asp-for="LName" class="form-control" />
+                <span asp-validation-for="LName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+
+<div>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</div>
+</body>
+</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

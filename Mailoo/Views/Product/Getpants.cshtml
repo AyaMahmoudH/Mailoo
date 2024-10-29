@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Product>
+
+<section class="featured-products">
+    <h2 class="text-center">Featured Products</h2> <!-- Center the heading -->
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4 col-sm-6 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@product.ImageUrl" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">@product.Description</p>
+                            <p>@product.Price</p>
+                            <a href="#" class="btn btn-primary">Quick view</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

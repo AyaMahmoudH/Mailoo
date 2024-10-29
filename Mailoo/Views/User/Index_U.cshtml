@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Product>
+<div class="container">
+    <div class="row justify-content-center">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+            <div class="col-md-4 col-sm-6 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="@item.imageSrc" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h2 class="card-title">@item.Name</h2>
+                        <p class="card-text">@item.Description</p>
+                        <h4>
+                            @item.TotalPrice @if (@item.TotalPrice != @item.Price)
+
+                            {
+                                <span class="text-decoration-line-through text-dark">@item.Price</span>
+                            }
+                        </h4>
+                        <p class="card-text">Items left :@item.Quantity</p>
+                        <form asp-action="AddProduct" asp-controller="Cart" class="d-inline-block me-2" method="post">
+                            <input type="hidden" name="ID" value="@item.ID" />
+                            <input type="hidden" name="Name" value="@item.Name" />
+                            <input type="hidden" name="Price" value="@item.Price" />
+                            <input type="hidden" name="Quantity" value="@item.Quantity" />
+                            <input type="hidden" name="TotalPrice" value="@item.TotalPrice" />
+                            <input type="hidden" name="Discount" value="@item.Discount" />
+                            <input type="hidden" name="imageSrc" value="@item.imageSrc" />
+                            <!-- Add any other properties that you want to send -->
+
+                            <button type="submit" class="btn btn-success">Add to Cart</button>
+                        </form>
+
+                        <form asp-action="AddtoWishlist" asp-controller="Wishlist" class="d-inline-block" method="post">
+                            <input type="hidden" name="ID" value="@item.ID" />
+                            <input type="hidden" name="Name" value="@item.Name" />
+                            <input type="hidden" name="Price" value="@item.Price" />
+                            <input type="hidden" name="Description" value="@item.Description" />
+                            <input type="hidden" name="imageSrc" value="@item.imageSrc" />
+                            <!-- Add any other properties that you want to send -->
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="bi bi-heart"></i>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+        }
+    </div>
+</div>
